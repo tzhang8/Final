@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class FX extends Application {
 
 	private ArrayList<Review> Reviews;
+	private ArrayList<User> Users;
 	public void start(Stage primaryStage) throws Exception{
 
 		gen_review();
