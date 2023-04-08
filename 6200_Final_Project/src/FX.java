@@ -57,16 +57,27 @@ public class FX extends Application {
 		final Text message = new Text();
 		pane.add(message, 1, 6);
 
+		Button btLogout = new Button("Logout");
+		Scene home_scene = new Scene(btLogout, 800, 800);
+		Scene scene = new Scene(pane, 800, 800);
+
+		btLogout.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				primaryStage.setScene(scene);
+			}
+		});
+
 		btLogin.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				User t = new User(user_name_text.getText(), user_pass_text.getText());
 				message.setFill(Color.RED);
 				message.setText(check_login(t));
+				primaryStage.setScene(home_scene);
 			}
 		});
 
-		Scene scene = new Scene(pane, 800, 800);
 		primaryStage.setTitle("Trip Geeks");
 		primaryStage.setScene(scene);
 		primaryStage.show();
