@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class ReviewGen {
 
-    private String[] country = {"USA", "UK", "China", "India", "Australia", "Canada", "Mexico", "Japan", "Korea", "Thailand", "Russia"};
-    private int[] stars = {0, 1, 2, 3, 4, 5};
+    private final String[] country = {"USA", "UK", "China", "India", "Australia", "Canada", "Mexico", "Japan", "Korea", "Thailand", "Russia"};
+    private final int[] stars = {0, 1, 2, 3, 4, 5};
     public ReviewGen() {}
     public ArrayList<Review> generate_review() {
 
@@ -13,7 +13,12 @@ public class ReviewGen {
         for (int i = 0; i < 1000; i++) {
             int c = rand.nextInt(11);
             int s = rand.nextInt(6);
-            result.add(new Review(this.country[c], this.stars[s]));
+
+            if (this.stars[s] < 3)
+                result.add(new Neg_Review(this.country[c], this.stars[s]));
+            else
+                result.add(new Pos_Review(this.country[c], this.stars[s]));
+
         }
         return result;
     }

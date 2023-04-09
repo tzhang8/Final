@@ -1,7 +1,8 @@
 public class Review {
 
-    private String country;
-    private int star;
+    private final String country;
+    private final int star;
+
     public Review(String c, int s) {
         country = c;
         star = s;
