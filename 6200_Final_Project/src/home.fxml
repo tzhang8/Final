@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeController">
+   <children>
+      <Button id="btLogout" fx:id="btLogout" alignment="BOTTOM_LEFT" layoutX="700.0" layoutY="750.0" mnemonicParsing="false" onAction="#switchToLoginScene" text="logout" />
+      <Button id="btTips" fx:id="btTips" layoutX="565.0" layoutY="388.0" mnemonicParsing="false" onAction="#switchToTipsScene" text="tips" />
+      <Button id="btChart" fx:id="btChart" layoutX="174.0" layoutY="388.0" mnemonicParsing="false" onAction="#switchToChartScene" text="chart" />
+   </children>
+</AnchorPane>

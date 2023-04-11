@@ -1,8 +1,10 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,67 +17,86 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FX extends Application {
-
-    private ArrayList<Review> Reviews;
     private ArrayList<User> Users;
+    private Button btSignup, btLogin;
+    private Text scene_title, message;
+    private TextField user_name_text, user_pass_text;
+    private GridPane login_pane;
+    private Scene home_scene, login_scene;
+    private Parent root;
+    private FXMLLoader loader;
 
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
         Users = new ArrayList<>();
-        gen_review();
 
-        GridPane pane = new GridPane();
-        pane.setAlignment(Pos.CENTER);
-        pane.setHgap(10);
-        pane.setVgap(10);
-        pane.setPadding(new Insets(25, 25, 25, 25));
+        loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        root = loader.load();
 
-        Button btSignup = new Button("Sign up");
+        set_login_pane();
+        setBtLogout();
+        setBtLogin(primaryStage);
+        setBtSignup();
+
+        primaryStage.setTitle("Trip Geeks");
+        primaryStage.setScene(login_scene);
+        primaryStage.show();
+    }
+
+    private void set_login_pane() {
+
+        login_pane = new GridPane();
+        login_pane.setAlignment(Pos.CENTER);
+        login_pane.setHgap(10);
+        login_pane.setVgap(10);
+        login_pane.setPadding(new Insets(25, 25, 25, 25));
+
+        btSignup = new Button("Sign up");
         HBox hbtSignup = new HBox(10);
         hbtSignup.setAlignment(Pos.BASELINE_LEFT);
         hbtSignup.getChildren().add(btSignup);
-        pane.add(hbtSignup, 0, 4);
+        login_pane.add(hbtSignup, 0, 4);
 
-        Button btLogin = new Button("Login");
+        btLogin = new Button("Login");
         HBox hbtLogin = new HBox(10);
         hbtLogin.setAlignment(Pos.BASELINE_RIGHT);
         hbtLogin.getChildren().add(btLogin);
-        pane.add(hbtLogin, 1, 4);
+        login_pane.add(hbtLogin, 1, 4);
 
-        Text scene_title = new Text("Welcome! Please login or sign up.");
+        scene_title = new Text("Welcome! Please login or sign up.");
         scene_title.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        pane.add(scene_title, 0, 0, 2, 1);
+        login_pane.add(scene_title, 0, 0, 2, 1);
 
         Label user_name = new Label("Username");
-        pane.add(user_name, 0, 1);
+        login_pane.add(user_name, 0, 1);
 
-        TextField user_name_text = new TextField();
-        pane.add(user_name_text, 1, 1);
+        user_name_text = new TextField();
+        login_pane.add(user_name_text, 1, 1);
 
         Label user_pass = new Label("Password");
-        pane.add(user_pass, 0, 2);
+        login_pane.add(user_pass, 0, 2);
 
-        TextField user_pass_text = new TextField();
-        pane.add(user_pass_text, 1, 2);
+        user_pass_text = new TextField();
+        login_pane.add(user_pass_text, 1, 2);
 
-        final Text message = new Text();
+        message = new Text();
 		message.setFill(Color.RED);
-        pane.add(message, 1, 6);
+        login_pane.add(message, 1, 6);
 
-        Button btLogout = new Button("Logout");
-        Scene home_scene = new Scene(btLogout, 800, 800);
-        Scene scene = new Scene(pane, 800, 800);
+        home_scene = new Scene(root, 800, 800);
+        login_scene = new Scene(login_pane, 800, 800);
+    }
 
-        btLogout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                primaryStage.setScene(scene);
-            }
-        });
+    private void setBtLogout() {
+        HomeController HomeControler = loader.getController();
+        HomeControler.loadLoginScene(login_scene);
+    }
 
+    private void setBtSignup() {
         btSignup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -89,6 +110,8 @@ public class FX extends Application {
                 user_pass_text.clear();
             }
         });
+    }
+    private void setBtLogin(Stage primaryStage) {
         btLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -101,10 +124,6 @@ public class FX extends Application {
                 user_pass_text.clear();
             }
         });
-
-        primaryStage.setTitle("Trip Geeks");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
 	private boolean add_user(User t) {
@@ -124,10 +143,6 @@ public class FX extends Application {
 		}
 		return 1;
 	}
-    private void gen_review() {
-        ReviewGen generator = new ReviewGen();
-        this.Reviews = generator.generate_review();
-    }
 
     private String gen_text(int i) {
         if (i == 0) {
