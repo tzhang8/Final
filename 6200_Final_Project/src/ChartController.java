@@ -20,7 +20,7 @@ public class ChartController implements Initializable {
 
     private Stage stage;
     private Scene scene;
-    private ArrayList<Review> Reviews;
+    static ArrayList<Review> Reviews;
     private HashMap<String, Integer> neg_data, pos_data;
     @FXML
     private CategoryAxis xAxis ;
@@ -107,9 +107,17 @@ public class ChartController implements Initializable {
         //System.out.printf(Reviews.get(0).get_country());
     }
     private void gen_review() {
-        ReviewGen generator = new ReviewGen();
-        this.Reviews = generator.generate_review();
+
+        if (this.Reviews == null) {
+            ReviewGen generator = new ReviewGen();
+            this.Reviews = generator.generate_review();
+            System.out.printf("1");
+        }
     }
+    protected HashMap<String, Integer> getPosData() {
+        return pos_data;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gen_review();
