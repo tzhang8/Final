@@ -104,7 +104,7 @@ public class TipsController implements Initializable {
         return result;
     }
 
-    private void initPictures() {
+    private void initPictures() throws URISyntaxException {
 
         ArrayList<ImageView> images = new ArrayList<>();
         images.add(picForth);
@@ -113,8 +113,10 @@ public class TipsController implements Initializable {
         images.add(picFirst);
 
         for (int i = 3; i >= 0; i--) {
-            String path = top_counties.get(i) + ".jpeg";
-            Image image = new Image(getClass().getResourceAsStream(path));
+
+            URL resource = getClass().getClassLoader().getResource("pictures/" + top_counties.get(i) + ".jpeg");
+            //String path = top_counties.get(i) + ".jpeg";
+            Image image = new Image(String.valueOf(resource.toURI()));
             images.get(i).setImage(image);
         }
     }
@@ -153,7 +155,11 @@ public class TipsController implements Initializable {
         btThird.setText(top_counties.get(1));
         btForth.setText(top_counties.get(0));
 
-        initPictures();
+        try {
+            initPictures();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
 
         picFirst.setVisible(false);
         picSecond.setVisible(false);
