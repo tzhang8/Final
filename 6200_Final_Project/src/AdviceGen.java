@@ -9,8 +9,7 @@ public class AdviceGen {
 
     private final String[] country = {"USA", "UK", "China", "India", "Australia", "Canada", "Mexico", "Japan", "Korea", "Thailand", "Russia"};
 
-    public AdviceGen() {
-    }
+    public AdviceGen() {}
 
     public HashMap<String, String> generate_advice() throws FileNotFoundException, URISyntaxException {
 
