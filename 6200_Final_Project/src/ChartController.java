@@ -8,8 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,7 +23,8 @@ public class ChartController implements Initializable {
     private Stage stage;
     private Scene scene;
     static ArrayList<Review> Reviews;
-    private HashMap<String, Integer> neg_data, pos_data;
+    protected HashMap<String, Integer> neg_data, pos_data;
+
     @FXML
     private CategoryAxis xAxis ;
     @FXML
