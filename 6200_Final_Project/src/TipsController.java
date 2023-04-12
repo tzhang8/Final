@@ -11,7 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
@@ -117,10 +119,15 @@ public class TipsController implements Initializable {
         }
     }
 
-    private void initText() {
+    private void initText() throws FileNotFoundException, URISyntaxException {
 
+        AdviceGen adviceGen = new AdviceGen();
+        advices = adviceGen.generate_advice();
 
-        advices.put()
+        textFirst.setText(advices.get(top_counties.get(3)));
+        textSecond.setText(advices.get(top_counties.get(2)));
+        textThird.setText(advices.get(top_counties.get(1)));
+        textForth.setText(advices.get(top_counties.get(0)));
 
     }
 
@@ -153,9 +160,17 @@ public class TipsController implements Initializable {
         picThird.setVisible(false);
         picForth.setVisible(false);
 
+        try {
+            initText();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
         textFirst.setVisible(false);
         textSecond.setVisible(false);
-        textSecond.setVisible(false);
-        textSecond.setVisible(false);
+        textThird.setVisible(false);
+        textForth.setVisible(false);
     }
 }

@@ -114,7 +114,7 @@ public class ChartController implements Initializable {
         if (this.Reviews == null) {
             ReviewGen generator = new ReviewGen();
             this.Reviews = generator.generate_review();
-            System.out.printf("1");
+            //System.out.printf("1");
         }
     }
     protected HashMap<String, Integer> getPosData() {

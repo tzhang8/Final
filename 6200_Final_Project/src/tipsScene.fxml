@@ -12,7 +12,7 @@
       <Button fx:id="btSecond" layoutX="64.0" layoutY="203.0" mnemonicParsing="false" onAction="#showSecond" text="Button" AnchorPane.bottomAnchor="550.0" />
       <Button fx:id="btThird" layoutX="64.0" layoutY="341.0" mnemonicParsing="false" onAction="#showThird" text="Button" AnchorPane.bottomAnchor="350.0" />
       <Button fx:id="btForth" layoutX="64.0" layoutY="448.0" mnemonicParsing="false" onAction="#showForth" text="Button" AnchorPane.bottomAnchor="150.0" />
-      <Text fx:id="textFirst" layoutX="150.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" AnchorPane.bottomAnchor="757.0" />
+      <Text fx:id="textFirst" layoutX="150.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" AnchorPane.bottomAnchor="690.0" />
       <Text fx:id="textSecond" layoutX="150.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" />
       <Text fx:id="textThird" layoutX="150.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" />
       <Text fx:id="textForth" layoutX="150.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="250.0" />
